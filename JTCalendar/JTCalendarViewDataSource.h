@@ -11,8 +11,9 @@
 
 @protocol JTCalendarDataSource <NSObject>
 
-- (BOOL)calendarHaveEvent:(JTCalendar *)calendar date:(NSDate *)date;
+- (NSInteger)calendarHaveEvent:(JTCalendar *)calendar date:(NSDate *)date;
 - (void)calendarDidDateSelected:(JTCalendar *)calendar date:(NSDate *)date;
+- (NSString *)calendarGetMatchImage:(JTCalendar *)caledar date:(NSDate *)date;
 
 @optional
 

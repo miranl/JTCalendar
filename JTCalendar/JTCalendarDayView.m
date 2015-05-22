@@ -9,11 +9,14 @@
 
 #import "JTCircleView.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
+
 @interface JTCalendarDayView (){
     UIView *backgroundView;
     JTCircleView *circleView;
     UILabel *textLabel;
     JTCircleView *dotView;
+    UIImageView *imageView;
     
     BOOL isSelected;
     
@@ -82,6 +85,11 @@ static NSString *const kJTCalendarDaySelected = @"kJTCalendarDaySelected";
     }
     
     {
+        imageView = [UIImageView new];
+        [self addSubview:imageView];
+    }
+    
+    {
         UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTouch)];
 
         self.userInteractionEnabled = YES;
@@ -105,7 +113,9 @@ static NSString *const kJTCalendarDaySelected = @"kJTCalendarDaySelected";
 {
     textLabel.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     backgroundView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-
+    
+    imageView.frame = CGRectMake(self.frame.size.width/2 - 15, (self.frame.size.height / 2) - 15, 30, 30);
+    // imageView.backgroundColor = [UIColor redColor];
 
     CGFloat sizeCircle = MIN(self.frame.size.width, self.frame.size.height);
     CGFloat sizeDot = sizeCircle;
@@ -260,10 +270,27 @@ static NSString *const kJTCalendarDaySelected = @"kJTCalendarDaySelected";
 
 - (void)reloadData
 {
-    dotView.hidden = ![self.calendarManager.dataCache haveEvent:self.date];
-    
+    NSInteger eventType = [self.calendarManager.dataCache haveEvent:self.date];
     BOOL selected = [self isSameDate:[self.calendarManager currentDateSelected]];
     [self setSelected:selected animated:NO];
+    
+    if (eventType == 1)  { //  normal event
+        imageView.hidden = YES;
+        dotView.hidden = NO;
+        // dotView.color = [UIColor greenColor];
+    } else if (eventType == 2) { // match
+        dotView.hidden =  YES;
+        textLabel.hidden = YES;
+        imageView.hidden = NO;
+        
+        NSString *matchImageUrl = [self.calendarManager.dataSource calendarGetMatchImage:self.calendarManager date:self.date];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:matchImageUrl]];
+    } else {
+        imageView.hidden = YES;
+        textLabel.hidden = NO;
+        dotView.hidden = YES;
+        // dotView.color = [self.calendarManager.calendarAppearance dayDotColor];
+    }
 }
 
 - (BOOL)isToday
