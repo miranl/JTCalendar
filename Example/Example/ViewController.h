@@ -9,6 +9,12 @@
 
 #import "JTCalendar.h"
 
+typedef NS_ENUM(NSInteger, SCEventType) {
+    SCEventTypeNoEvent = 0,
+    SCEventTypeEvent = 1,
+    SCEventTypeMatch = 2
+};
+
 @interface ViewController : UIViewController<JTCalendarDataSource>
 
 @property (weak, nonatomic) IBOutlet JTCalendarMenuView *calendarMenuView;

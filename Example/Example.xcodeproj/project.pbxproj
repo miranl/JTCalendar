@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F1735951B0DED490064823B /* nkmb1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F1735941B0DED490064823B /* nkmb1.png */; };
 		A478836B7E6915F6A886DADD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A32EECC3DD04D628CA764863 /* libPods.a */; };
 		AB6843E51A06FCE2000ADE68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6843E41A06FCE2000ADE68 /* main.m */; };
 		AB6843E81A06FCE2000ADE68 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6843E71A06FCE2000ADE68 /* AppDelegate.m */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F1735941B0DED490064823B /* nkmb1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nkmb1.png; sourceTree = "<group>"; };
 		A32EECC3DD04D628CA764863 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6843DF1A06FCE2000ADE68 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6843E31A06FCE2000ADE68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 		AB6843D61A06FCE2000ADE68 = {
 			isa = PBXGroup;
 			children = (
+				8F1735941B0DED490064823B /* nkmb1.png */,
 				AB6843E11A06FCE2000ADE68 /* Example */,
 				AB6843E01A06FCE2000ADE68 /* Products */,
 				614C882AD7264084D149FA72 /* Pods */,
@@ -163,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB6843EE1A06FCE2000ADE68 /* Main.storyboard in Resources */,
+				8F1735951B0DED490064823B /* nkmb1.png in Resources */,
 				AB6843F31A06FCE2000ADE68 /* LaunchScreen.xib in Resources */,
 				AB6843F01A06FCE2000ADE68 /* Images.xcassets in Resources */,
 			);

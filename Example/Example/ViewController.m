@@ -21,6 +21,15 @@
     
     self.calendar = [JTCalendar new];
     
+    eventsByDate = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                [NSNumber numberWithInt:1], @"15-05-2015",
+                [NSNumber numberWithInt:2], @"20-05-2015",
+                [NSNumber numberWithInt:1], @"29-05-2015",
+                [NSNumber numberWithInt:2], @"31-05-2015",
+                [NSNumber numberWithInt:2], @"08-06-2015",
+                [NSNumber numberWithInt:2], @"30-07-2015",
+                    nil];
+    
     // All modifications on calendarAppearance have to be done before setMenuMonthsView and setContentView
     // Or you will have to call reloadAppearance
     {
@@ -50,12 +59,12 @@
             return [NSString stringWithFormat:@"%ld\n%@", comps.year, monthText];
         };
     }
-    
+   
     [self.calendar setMenuMonthsView:self.calendarMenuView];
     [self.calendar setContentView:self.calendarContentView];
     [self.calendar setDataSource:self];
     
-    [self createRandomEvents];
+    // [self createRandomEvents];
     
     [self.calendar reloadData];
 }
@@ -67,15 +76,30 @@
 
 #pragma mark - JTCalendarDataSource
 
-- (BOOL)calendarHaveEvent:(JTCalendar *)calendar date:(NSDate *)date
+- (NSInteger)calendarHaveEvent:(JTCalendar *)calendar date:(NSDate *)date
 {
+    /*
+    NSLog(@"calederHaveEvent was called with date=> %@", date);
     NSString *key = [[self dateFormatter] stringFromDate:date];
-    
     if(eventsByDate[key] && [eventsByDate[key] count] > 0){
-        return YES;
+        return 1;
+    }
+    */
+    
+    NSString *key = [[self dateFormatter] stringFromDate:date];
+    // NSLog(@"key=> %@", key);
+    
+    if (eventsByDate[key]) {
+        NSNumber *num = [eventsByDate objectForKey:key];
+        // NSLog(@"num=> %@", num);
+        if ([num isEqualToNumber:[NSNumber numberWithInt:SCEventTypeEvent]]) { // normal event
+            return SCEventTypeEvent;
+        } else if ([num isEqualToNumber:[NSNumber numberWithInt:SCEventTypeMatch]]) { // match
+            return SCEventTypeMatch;
+        }
     }
     
-    return NO;
+    return SCEventTypeNoEvent;
 }
 
 - (void)calendarDidDateSelected:(JTCalendar *)calendar date:(NSDate *)date
@@ -83,7 +107,14 @@
     NSString *key = [[self dateFormatter] stringFromDate:date];
     NSArray *events = eventsByDate[key];
     
-    NSLog(@"Date: %@ - %ld events", date, [events count]);
+    // NSLog(@"Date: %@ - %ld events", date, [events count]);
+}
+
+- (NSString *)calendarGetMatchImage:(JTCalendar *)caledar date:(NSDate *)date
+{
+    // NSString *key = [[self dateFormatter] stringFromDate:date];
+    
+    return @"http://www.nkmaribor.com/Img/Grbi/nkmb1.png";
 }
 
 - (void)calendarDidLoadPreviousPage
@@ -136,25 +167,6 @@
     }
     
     return dateFormatter;
-}
-
-- (void)createRandomEvents
-{
-    eventsByDate = [NSMutableDictionary new];
-    
-    for(int i = 0; i < 30; ++i){
-        // Generate 30 random dates between now and 60 days later
-        NSDate *randomDate = [NSDate dateWithTimeInterval:(rand() % (3600 * 24 * 60)) sinceDate:[NSDate date]];
-        
-        // Use the date as key for eventsByDate
-        NSString *key = [[self dateFormatter] stringFromDate:randomDate];
-        
-        if(!eventsByDate[key]){
-            eventsByDate[key] = [NSMutableArray new];
-        }
-             
-        [eventsByDate[key] addObject:randomDate];
-    }
 }
 
 @end

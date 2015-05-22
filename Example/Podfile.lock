@@ -1,5 +1,9 @@
 PODS:
-  - JTCalendar (1.2.3)
+  - JTCalendar (1.2.3):
+    - SDWebImage
+  - SDWebImage (3.7.2):
+    - SDWebImage/Core (= 3.7.2)
+  - SDWebImage/Core (3.7.2)
 
 DEPENDENCIES:
   - JTCalendar (from `..`)
@@ -9,6 +13,7 @@ EXTERNAL SOURCES:
     :path: ..
 
 SPEC CHECKSUMS:
-  JTCalendar: 3589133312fb0b160ea3bcba733ddabf8c8aefc9
+  JTCalendar: b0e125770fe7be1e6fccf28d2c8616d747448192
+  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
 
 COCOAPODS: 0.37.1
