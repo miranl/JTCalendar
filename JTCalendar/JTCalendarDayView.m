@@ -277,7 +277,7 @@ static NSString *const kJTCalendarDaySelected = @"kJTCalendarDaySelected";
     if (eventType == 1)  { //  normal event
         imageView.hidden = YES;
         dotView.hidden = NO;
-        // dotView.color = [UIColor greenColor];
+        textLabel.hidden = NO;
     } else if (eventType == 2) { // match
         dotView.hidden =  YES;
         textLabel.hidden = YES;
