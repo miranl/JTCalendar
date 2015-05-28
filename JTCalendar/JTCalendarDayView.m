@@ -114,8 +114,8 @@ static NSString *const kJTCalendarDaySelected = @"kJTCalendarDaySelected";
     textLabel.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     backgroundView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     
-    imageView.frame = CGRectMake(self.frame.size.width/2 - 15, (self.frame.size.height / 2) - 15, 30, 30);
-    // imageView.backgroundColor = [UIColor redColor];
+    imageView.frame = CGRectMake(self.frame.size.width/2 - 15, (self.frame.size.height / 2) - 15, 25, 25);
+    [imageView setContentMode:UIViewContentModeScaleAspectFit];
 
     CGFloat sizeCircle = MIN(self.frame.size.width, self.frame.size.height);
     CGFloat sizeDot = sizeCircle;
